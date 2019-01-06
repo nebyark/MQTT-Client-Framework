@@ -54,7 +54,11 @@
  * defaults to an empty dictionary
  */
 @property (nonatomic, strong) NSDictionary<NSString *, NSString*> *additionalHeaders;
-  
 
+/**
+ * Max amount of time to wait for a connection to establish.
+ * defaults to 60
+ */
+@property (nonatomic) NSTimeInterval timeoutInterval;
 
 @end

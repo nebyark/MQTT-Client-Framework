@@ -18,6 +18,7 @@
 @synthesize state;
 @synthesize delegate;
 @synthesize url;
+@synthesize timeoutInterval;
 @dynamic host;
 @dynamic port;
 
@@ -31,6 +32,7 @@
     self.allowUntrustedCertificates = false;
     self.pinnedCertificates = nil;
     self.additionalHeaders = @{};
+    self.timeoutInterval = 60.0;
     return self;
 }
 
@@ -39,6 +41,7 @@
     self.state = MQTTTransportOpening;
     
     NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:[self endpointURL]];
+    [urlRequest setTimeoutInterval:self.timeoutInterval];
     urlRequest.SR_SSLPinnedCertificates = self.pinnedCertificates;
   
     [self.additionalHeaders enumerateKeysAndObjectsUsingBlock:^(NSString * _Nonnull key, NSString * _Nonnull obj, BOOL * _Nonnull stop) {
